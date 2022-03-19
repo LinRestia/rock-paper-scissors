@@ -8,7 +8,8 @@ const computerPlay =() => {
         return 'scissors';
     }
 }
-const playerSelection = choice => {
+choice = window.prompt('Choose between rock,paper, or scissors');
+const playerSelection =() => {
     if (choice.toLowerCase() === 'rock') {
         return 'rock';
     } else if (choice.toLowerCase() === 'paper') {
@@ -16,30 +17,36 @@ const playerSelection = choice => {
     } else if (choice.toLowerCase() === 'scissors' || choice.toLowerCase() === 'scissor') {
         return 'scissors'
     } else {
-        return 'Please choose between rock,paper, or scissors.'
+        return 'Please choose between rock,paper, or scissors.';
     }
 }
 
-const playTheGame = (computerPlay, playerSelection) => {
-    if (playerSelection === 'rock' && computerPlay === 'rock') {
+const playTheGame = (player, computer) => {
+    if (playerSelection() === 'rock' && computerPlay() === 'rock') {
         return 'It\'s a tie!';
-    } else if (playerSelection === 'rock' && computerPlay ==='paper') {
+    } else if (playerSelection() === 'rock' && computerPlay() ==='paper') {
         return 'Computer Win';
-    } else if (playerSelection === 'rock' && computerPlay === 'scissors') {
+    } else if (playerSelection() === 'rock' && computerPlay() === 'scissors') {
         return 'Player Win!';
     }
-    if (playerSelection === 'paper' && computerPlay === 'rock') {
+    if (playerSelection() === 'paper' && computerPlay() === 'rock') {
         return 'Player Win';
-    } else if (playerSelection === 'paper' && computerPlay === 'paper') {
+    } else if (playerSelection() === 'paper' && computerPlay() === 'paper') {
         return 'It\'s a tie';
-    } else if (playerSelection === 'paper' && computerPlay === 'scissors') {
+    } else if (playerSelection() === 'paper' && computerPlay() === 'scissors') {
         return 'Computer Win';
     }
-    if (playerSelection === 'scissors' && computerPlay === 'rock') {
+    if (playerSelection() === 'scissors' && computerPlay() === 'rock') {
         return 'Computer Win';
-    } else if (playerSelection === 'scissors' && computerPlay ==='paper') {
+    } else if (playerSelection() === 'scissors' && computerPlay() ==='paper') {
         return 'Player Win';
-    } else if (playerSelection === 'scissors' && computerPlay === 'scissors') {
+    } else if (playerSelection() === 'scissors' && computerPlay() === 'scissors') {
         return 'It\'s a tie';
+    }
+}
+
+const game = () => {
+    for (let i = 0; i < 5; i++) {
+        console.log(playTheGame());
     }
 }
