@@ -1,11 +1,13 @@
 const computerplay = () => {
-    let random = Math.floor(Math.random * 3)
-    if (random === 1) {
+    random = Math.floor(Math.random() * 3);
+    if (random = 0) {
         return 'rock';
-    } else if (random === 2) {
+    } else if (random = 1) {
         return 'paper';
-    } else {
+    } else if (random = 2) {
         return 'scissors';
+    } else {
+        return 'invalid';
     }
 }
 
