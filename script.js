@@ -1,7 +1,8 @@
 let playerWin = 0;
+let draw = 0;
 let computerWin = 0;
 const computerPlays = () => {
-    gen = Math.floor(Math.random() * 3);
+    let gen = Math.floor(Math.random() * 3);
     const random = {
         0: 'rock',
         1: 'scissors',
@@ -11,10 +12,13 @@ const computerPlays = () => {
 }
 const oneGame = () => {
     const comp = 'Computer: ';
-    const player = 'Player: '
+    const player = 'Player: ';
+    const drawCount = 'Draws: ';
     computerSelection = computerPlays();
     if (playerSelection === computerSelection) {
-        console.log('Its a Draw!');
+        draw++;
+        console.log('It\'s a draw!');
+        console.log(drawCount + draw);
         return 'Draw';
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
         computerWin++;
@@ -48,16 +52,23 @@ const oneGame = () => {
         return 'Win';
     }
 }
-const game = () => {
-    for (let i = 0; i < 5; i++) {
-        oneGame();
-    } if (playerWin > computerWin) {
-        console.log('It\'s the player\'s Win!')
-    } else if (playerWin === computerWin) {
-        console.log('Its a Draw :o');
-    } else if (playerWin < computerWin) {
-        console.log('Its the Computers\'s Win!');
-    }
-    return 'end';
-}
-const playerSelection = prompt('choose between rock, paper and scissors');
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', () => {
+    playerSelection = 'rock';
+    console.log(playerSelection);
+    oneGame();
+});
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', ()=> {
+    playerSelection = 'paper';
+    console.log(playerSelection);
+    oneGame();
+});
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', () => {
+    playerSelection = 'scissors';
+    console.log(playerSelection);
+    oneGame();
+});
+const playerScore = 
+let playerSelection = '';
