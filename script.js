@@ -1,8 +1,9 @@
-let playerWin = 0;
-let draw = 0;
-let computerWin = 0;
+let playerScore = 0;
+let drawCount = 0;
+let computerScore = 0;
+
 const computerPlays = () => {
-    let gen = Math.floor(Math.random() * 3);
+    gen = Math.floor(Math.random() * 3);
     const random = {
         0: 'rock',
         1: 'scissors',
@@ -10,65 +11,98 @@ const computerPlays = () => {
     }
     return random[gen];
 }
+
 const oneGame = () => {
-    const comp = 'Computer: ';
-    const player = 'Player: ';
-    const drawCount = 'Draws: ';
     computerSelection = computerPlays();
     if (playerSelection === computerSelection) {
-        draw++;
-        console.log('It\'s a draw!');
-        console.log(drawCount + draw);
-        return 'Draw';
-    } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        computerWin++;
-        console.log('You Lose :(');
-        console.log(comp + computerWin);
-        return 'Loss';
-    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        playerWin++
-        console.log('You Win :)');
-        console.log(player + playerWin);
-        return 'Win';
-    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        computerWin++;
-        console.log('You Lose :(');
-        console.log(comp + computerWin);
-        return 'Lose';
-    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        playerWin++;
-        console.log('You Win :)');
-        console.log(player + playerWin);
-        return 'Win';
-    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        computerWin++;
-        console.log('You Lose :(');
-        console.log(comp + computerWin);
-        return 'Lose';
-    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        playerWin++;
-        console.log('You Win :)');
-        console.log(player + playerWin);
-        return 'Win';
+        drawCount++
+        displayDrawResults();
+    } else if (playerSelection === 'rock' && computerSelection === 'paper' || 
+            playerSelection === 'scissors' && computerSelection === 'rock' || 
+            playerSelection === 'paper' && computerSelection === 'scissors') {
+                computerScore++;
+                switch(computerScore) {
+                    case 1:
+                        displayComputerResult('1');
+                        battleResultsComp(`Computer: ${computerSelection} Beats Player's: ${playerSelection} for its first point`);
+                    break;
+                    case 2:
+                        displayComputerResult('2');
+                        battleResultsComp(`Computer: ${computerSelection} Beats Player's: ${playerSelection}. The match is beginning to heat up!`);
+                    break;
+                    case 3:
+                        displayComputerResult('3');
+                        battleResultsComp(`Computer: ${computerSelection} Beats Player's: ${playerSelection}. The Battle is beginning to intensify!`);
+                    break;
+                    case 4:
+                        displayComputerResult('4');
+                        battleResultsComp(`Computer: ${computerSelection} Beats Player's: ${playerSelection}. The climax is approaching and the end is nigh for one of these contestants!`);
+                    break;
+                    case 5:
+                        displayComputerResult('5');
+                        battleResultsComp(`Computer: ${computerSelection} Beats Player's: ${playerSelection} for its final point and has gained Victory!!!`);
+                    break;
+                }
+    } else {
+        playerScore++;
+        switch(playerScore) {
+            case 1:
+                displayPlayerResult('1');
+                battleResultsPlayer(`Player's: ${playerSelection} achieves a win over Computers: ${computerSelection} for their first point!`);
+            break;
+            case 2:
+                displayPlayerResult('2');
+                battleResultsPlayer(`Player's: ${playerSelection} achieves a win over Computers: ${computerSelection}. Things are looking intense.`);
+            break;
+            case 3:
+                displayPlayerResult('3');
+                battleResultsPlayer(`Player's: ${playerSelection} achieves a win over Computers: ${computerSelection}. How will things go from here.`);
+            break;
+            case 4:
+                displayPlayerResult('4');
+                battleResultsPlayer(`Player's: ${playerSelection} achieves a win over Computers: ${computerSelection}. Player is showing thier full strength !!`);
+            break;
+            case 5:
+                displayPlayerResult('5');
+                battleResultsPlayer(`Player's: ${playerSelection} achieves a win over Computers: ${computerSelection} and has achieved Victory !!`);
+            break;
+        }
     }
+    
 }
+
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', () => {
     playerSelection = 'rock';
-    console.log(playerSelection);
     oneGame();
 });
 const paper = document.querySelector('#paper');
-paper.addEventListener('click', ()=> {
+paper.addEventListener('click', () => {
     playerSelection = 'paper';
-    console.log(playerSelection);
     oneGame();
 });
 const scissors = document.querySelector('#scissors');
 scissors.addEventListener('click', () => {
     playerSelection = 'scissors';
-    console.log(playerSelection);
     oneGame();
 });
-const playerScore = 
-let playerSelection = '';
+const playerResults = document.querySelector('#player-score');
+const displayPlayerResult = (playerResult) => {
+    playerResults.textContent = playerResult;
+}
+const computerResults = document.querySelector('#computer-score');
+const displayComputerResult = (computerResult) => {
+    computerResults.textContent = computerResult;
+}
+const drawResults = document.querySelector('#draw-score');
+const displayDrawResults = () => {
+    drawResults.textContent = drawCount.toString();
+}
+const battleDisplayPlayerWin = document.querySelector('.player-win-battle');
+const battleResultsPlayer = (battleStringPlayer) => {
+    battleDisplayPlayerWin.textContent = battleStringPlayer;
+}
+const battleDisplayCompWin = document.querySelector('#computer-win-battle');
+const  battleResultsComp = (battleStringComp) => {
+    battleDisplayCompWin.textContent = battleStringComp;
+}

@@ -7,10 +7,30 @@
     <script src="script.js" defer></script>
     <title>Document</title>
 </head>
-<body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <div class = "score-container"></div>
+<body id="body">
+    <h1>First to 5 Wins</h1>
+    <div class="text-display">
+        <div class="who-won">The Battle Begins</div>
+        <div id="computer-win-battle" class ="player-win-battle"></div>
+    </div>
+    <div class="results">
+        <div class="player-results-container">
+            <div id="player-label">Player:</div>
+            <div id="player-score">0</div>
+        </div>
+        <div class ="draw-results-container">
+            <div id ="draw-label">Draw Counter:</div>
+            <div id="draw-score">0</div>
+        </div>
+        <div class="computer-results-container">
+            <div id="computer-label">Computer:</div>
+            <div id="computer-score">0</div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
 </body>
 </html>
