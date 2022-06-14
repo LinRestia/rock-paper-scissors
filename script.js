@@ -43,6 +43,9 @@ const oneGame = () => {
                         battleResultsComp(`Computer: ${computerSelection} Beats Player's: ${playerSelection} for its final point and has gained Victory!!!`);
                     break;
                 }
+                if(computerScore === 5 && computerScore > playerScore) {
+                    winnerResults('Computer Has Achieved Glory And Has Triumphed Over The Power Of Mankind!!');
+                }
     } else {
         playerScore++;
         switch(playerScore) {
@@ -67,6 +70,9 @@ const oneGame = () => {
                 battleResultsPlayer(`Player's: ${playerSelection} achieves a win over Computers: ${computerSelection} and has achieved Victory !!`);
             break;
         }
+        if(playerScore === 5 && playerScore > computerScore) {
+            winnerResults('Player Has Won The Match and Has Gained Glory!!');
+        }
     }
     
 }
@@ -85,6 +91,16 @@ const scissors = document.querySelector('#scissors');
 scissors.addEventListener('click', () => {
     playerSelection = 'scissors';
     oneGame();
+});
+const resetGameButton = document.querySelector('#reset');
+resetGameButton.addEventListener('click', () => {
+    playerScore = 0;
+    drawCount = 0;
+    computerScore = 0;
+    displayPlayerResult('0')
+    displayDrawResults();
+    displayComputerResult('0');
+    originDisplayText();
 });
 const playerResults = document.querySelector('#player-score');
 const displayPlayerResult = (playerResult) => {
@@ -105,4 +121,12 @@ const battleResultsPlayer = (battleStringPlayer) => {
 const battleDisplayCompWin = document.querySelector('#computer-win-battle');
 const  battleResultsComp = (battleStringComp) => {
     battleDisplayCompWin.textContent = battleStringComp;
+}
+const winnerDisplay = document.querySelector('.explanation');
+const winnerResults = (winnerTitleScreen) => {
+    winnerDisplay.textContent = winnerTitleScreen;
+}
+const originDisplay = document.querySelector('#title');
+const originDisplayText = () => {
+    originDisplay.textContent = 'First to 5 Wins';
 }
